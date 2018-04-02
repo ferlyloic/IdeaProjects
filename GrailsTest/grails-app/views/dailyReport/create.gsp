@@ -3,7 +3,7 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'dailyReport.label', default: 'DailyReport')}" />
-        <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
@@ -34,9 +34,9 @@
                         <f:field bean="dailyReport" property="date"/>
                         %{--<f:field bean="dailyReport" property="description"/>--}%
                     <label>description</label><br>
-                    <textArea name="description"></textArea>
+                    <g:textArea name="description"/>
                     <script>
-                        CKEDITOR.replace( 'editor1' );
+                        CKEDITOR.replace( 'description' );
                     </script>
                 </fieldset>
                 <fieldset class="buttons">

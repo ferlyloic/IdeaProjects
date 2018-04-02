@@ -29,7 +29,16 @@
             <g:form resource="${this.dailyReport}" method="PUT">
                 <g:hiddenField name="version" value="${this.dailyReport?.version}" />
                 <fieldset class="form">
-                    <f:all bean="dailyReport"/>
+                    %{--<f:all bean="dailyReport"/>--}%
+
+                    <f:field bean="dailyReport" property="titel"/>
+                    <f:field bean="dailyReport" property="date"/>
+                    %{--<f:field bean="dailyReport" property="description"/>--}%
+                    <label>description</label><br>
+                    <g:textArea name="description" value="${this.dailyReport?.description}"/>
+                    <script>
+                        CKEDITOR.replace( 'description' );
+                    </script>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
