@@ -3,6 +3,7 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'dailyReport.label', default: 'DailyReport')}" />
+        <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
@@ -33,7 +34,10 @@
                         <f:field bean="dailyReport" property="date"/>
                         %{--<f:field bean="dailyReport" property="description"/>--}%
                     <label>description</label><br>
-                    <g:textArea name="description" rows="1000" cols="100" escapeHtml="false" />
+                    <textArea name="description"></textArea>
+                    <script>
+                        CKEDITOR.replace( 'editor1' );
+                    </script>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
