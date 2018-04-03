@@ -12,7 +12,6 @@
     <asset:stylesheet src="application.css"/>
 
     <g:layoutHead/>
-    <script src="https://cdn.ckeditor.com/4.9.1/full/ckeditor.js"></script>
 </head>
 <body>
 
