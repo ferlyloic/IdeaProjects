@@ -15,7 +15,8 @@ class DailyReportController {
     }
 
     def show(Long id) {
-        respond dailyReportService.get(id)
+        redirect(action: "edit", id: id)
+//        respond dailyReportService.get(id)
     }
 
     def create() {
