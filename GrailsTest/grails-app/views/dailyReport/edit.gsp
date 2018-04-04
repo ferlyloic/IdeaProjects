@@ -26,7 +26,7 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.dailyReport}" method="PUT">
+            <g:form name="myForm" resource="${this.dailyReport}" method="PUT">
                 <g:hiddenField name="version" value="${this.dailyReport?.version}" />
                 <fieldset class="form">
                     %{--<f:all bean="dailyReport"/>--}%
@@ -42,8 +42,24 @@
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>
+            <script type="text/javascript">
+                window.onload=function(){
+                    var auto = setTimeout(function(){ autoRefresh(); }, 100);
+
+                    function submitform(){
+                        // alert('test');
+                        document.forms["myForm"].submit();
+                    }
+
+                    function autoRefresh(){
+                        clearTimeout(auto);
+                        auto = setTimeout(function(){ submitform(); autoRefresh(); }, 30000);
+                    }
+                }
+            </script>
         </div>
     </body>
 </html>
