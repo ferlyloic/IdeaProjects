@@ -26,7 +26,7 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.dailyReport}" method="POST">
+            <g:form name="myForm" resource="${this.dailyReport}" method="POST">
                 <fieldset class="form">
                     %{--<f:all bean="dailyReport"/>--}%
 
@@ -43,6 +43,21 @@
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>
+            <script type="text/javascript">
+                window.onload=function(){
+                    var auto = setTimeout(function(){ autoRefresh(); }, 100);
+
+                    function submitform(){
+                        // alert('test');
+                        document.forms["myForm"].submit();
+                    }
+
+                    function autoRefresh(){
+                        clearTimeout(auto);
+                        auto = setTimeout(function(){ submitform(); autoRefresh(); }, 30000);
+                    }
+                }
+            </script>
         </div>
     </body>
 </html>
