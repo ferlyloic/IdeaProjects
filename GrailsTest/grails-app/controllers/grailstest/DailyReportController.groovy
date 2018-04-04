@@ -48,6 +48,7 @@ class DailyReportController {
     }
 
     def edit(Long id) {
+        println params
         respond dailyReportService.get(id)
     }
 
