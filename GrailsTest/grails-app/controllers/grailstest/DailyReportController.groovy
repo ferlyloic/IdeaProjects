@@ -14,8 +14,8 @@ class DailyReportController {
         respond dailyReportService.list(params), model:[dailyReportCount: dailyReportService.count()]
     }
 
-    def show(Long id) {
-        redirect(action: "edit", id: id)
+    def show() {
+        redirect(action: "edit", id: params.id)
 //        respond dailyReportService.get(id)
     }
 
@@ -48,7 +48,9 @@ class DailyReportController {
     }
 
     def edit(Long id) {
-        println params
+        params.clear()
+        println "this ist $params"
+        println(dailyReportService.get(id))
         respond dailyReportService.get(id)
     }
 
@@ -65,13 +67,15 @@ class DailyReportController {
             return
         }
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'dailyReport.label', default: 'DailyReport'), dailyReport.id])
-                redirect dailyReport
-            }
-            '*'{ respond dailyReport, [status: OK] }
-        }
+        println params
+        redirect(action: 'edit', id: dailyReport.getId())
+//        request.withFormat {
+//            form multipartForm {
+//                flash.message = message(code: 'default.updated.message', args: [message(code: 'dailyReport.label', default: 'DailyReport'), dailyReport.id])
+//                redirect dailyReport
+//            }
+//            '*'{ respond dailyReport, [status: OK] }
+//        }
     }
 
     def delete(Long id) {
